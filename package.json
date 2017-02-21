@@ -1,0 +1,31 @@
+{
+  "name": "ts-collections",
+  "version": "1.0.0",
+  "description": "Collection of datastructures and algorithims for typescript.",
+  "main": "dist/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/chai": "^3.4.35",
+    "@types/mocha": "^2.2.39",
+    "@types/sinon": "^1.16.35",
+    "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^3.1.5",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.7",
+    "typescript": "^2.1.6"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "collections",
+    "algorithms",
+    "typescript"
+  ],
+  "author": "Maikel Hofman",
+  "license": "MIT"
+}
