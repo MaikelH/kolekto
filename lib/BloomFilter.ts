@@ -1,9 +1,26 @@
-
-
 import {BitArray} from "./collections/BitArray";
+
+/**
+ * A BloomFilter for instances of type T.
+ *
+ * A Bloom filter is a space-efficient probabilistic data structure that is used to test whether an element is a member
+ * of a set.
+ *
+ * False positives are possible but false negatives not. In laymen's terms this means that an element maybe be in the set
+ * or definitely not in the set.
+ *
+ * The interface is modeled after the BloomFilter in Google Guava library.
+ *
+ * References:
+ *  - https://en.wikipedia.org/wiki/Bloom_filter
+ *  - http://stackoverflow.com/questions/658439/how-many-hash-functions-does-my-bloom-filter-need
+ *  - http://stackoverflow.com/questions/15952524/bloom-filter-evaluating-false-positive-rate/24071581#24071581
+ *
+ */
 export class BloomFilter<T> {
 	private _fpp: number;
 	private data: BitArray;
+	private inserted: number = 0;
 
 	private expectedInsertions;
 
@@ -25,19 +42,19 @@ export class BloomFilter<T> {
 		return this.calculateErrorRate(this.expectedInsertions, this.data.getSize());
 	}
 
-	public isCompatible(that: BloomFilter<T>) {
+	public isCompatible(that: BloomFilter<T>) : boolean{
+		return false;
+	}
+
+	public mightContain(object : T) : boolean{
+        return false;
+	}
+
+	public put(object: T) : void {
 
 	}
 
-	public mightContain(object : T) {
-
-	}
-
-	public put(object: T) {
-
-	}
-
-	public putAll(that: BloomFilter<T>) {
+	public putAll(that: BloomFilter<T>) : void {
 
 	}
 
