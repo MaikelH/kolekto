@@ -41,7 +41,9 @@ export class BitArray {
 
 		let number = this.data[arrayPosition];
 
-		number |= 1 << position;
+		let shifts = position % 32;
+
+		number |= 1 << shifts;
 
 		this.data[arrayPosition] = number;
 	}
@@ -57,7 +59,9 @@ export class BitArray {
 
 		let number = this.data[arrayPosition];
 
-		return (number & (1 << position)) != 0;
+		let shifts = position % 32;
+
+		return (number & (1 << shifts)) != 0;
 	}
 
 	/**

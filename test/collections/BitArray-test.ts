@@ -43,7 +43,7 @@ describe("BitArray", () => {
 	});
 
 	describe("Get", () => {
-		it("Should get bit with the correct value", () => {
+		it("Should get bit with the correct value (more than 32 bits)", () => {
 			let bits = new BitArray(32);
 
 			let result = bits.isBitSet(4);
@@ -51,6 +51,17 @@ describe("BitArray", () => {
 
 			bits.set(1, 1);
 			result = bits.isBitSet(1);
+			Assert.equal(result, true);
+		});
+
+		it("Should get bit with the correct value", () => {
+			let bits = new BitArray(64);
+
+			let result = bits.isBitSet(6);
+			Assert.equal(result, false);
+
+			bits.set(33, 1);
+			result = bits.isBitSet(33);
 			Assert.equal(result, true);
 		});
 
