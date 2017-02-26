@@ -20,7 +20,7 @@ import {BitArray} from "./collections/BitArray";
 export class BloomFilter<T> {
 	private _fpp: number;
 	private data: BitArray;
-	private inserted: number = 0;
+	private inserted: number = 1;
 
 	private expectedInsertions;
 
@@ -40,6 +40,10 @@ export class BloomFilter<T> {
 
 	public expectedFpp() : number {
 		return this.calculateErrorRate(this.expectedInsertions, this.data.getSize());
+	}
+
+	public currentFpp() : number {
+		return this.calculateErrorRate(this.inserted, this.data.getSize());
 	}
 
 	public isCompatible(that: BloomFilter<T>) : boolean{
@@ -74,7 +78,6 @@ export class BloomFilter<T> {
 	 *
 	 * @param expectedInsertions
 	 * @param numberOfBits
-	 * @param numberOfHashes
 	 */
 	private calculateErrorRate(expectedInsertions: number, numberOfBits: number) {
 		return Math.pow(Math.E, (-(numberOfBits / expectedInsertions) * Math.pow(Math.log(2), 2)));
