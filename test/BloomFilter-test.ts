@@ -10,11 +10,29 @@ describe("BloomFilter", () => {
 		})
 	});
 
-	function isEqualFloat(actual: number, expected: number, epsilon: number) : boolean{
-		if(actual <= expected + epsilon && actual >= expected - epsilon) {
-			return true;
-		}
+	describe('put', () => {
+		it("Should correctly put item in bloom filter", () => {
+			let filter  = new BloomFilter<string>(1000);
 
-		return false;
+			Assert.equal(filter.getInsertedAmount(), 0);
+			let name = "test";
+			filter.put(name);
+
+			Assert.isTrue(filter.mightContain(name));
+			Assert.equal(filter.getInsertedAmount(), 1);
+
+			Assert.isFalse(filter.mightContain("BlaBla"))
+		});
+
+		it("Should correctly deny that item is in set", () => {
+			let filter  = new BloomFilter<string>(100);
+
+			Assert.equal(filter.getInsertedAmount(), 0);
+			Assert.isFalse(filter.mightContain("BlaBla"))
+		});
+	});
+
+	function isEqualFloat(actual: number, expected: number, epsilon: number) : boolean{
+		return actual <= expected + epsilon && actual >= expected - epsilon;
 	}
 });

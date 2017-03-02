@@ -1,4 +1,6 @@
 import {BitArray} from "./collections/BitArray";
+let farmhash = require("farmhash");
+let crypto = require('crypto');
 
 /**
  * A BloomFilter for instances of type T.
@@ -7,9 +9,9 @@ import {BitArray} from "./collections/BitArray";
  * of a set.
  *
  * False positives are possible but false negatives not. In laymen's terms this means that an element maybe be in the set
- * or definitely not in the set.
+ * or definitely not in the set. The underlying hash function is the Google's FarmHash family of hash functions.
  *
- * The interface is modeled after the BloomFilter in Google Guava library.
+ * The interface is modeled after the BloomFilter in the Google Guava library.
  *
  * References:
  *  - https://en.wikipedia.org/wiki/Bloom_filter
@@ -20,7 +22,9 @@ import {BitArray} from "./collections/BitArray";
 export class BloomFilter<T> {
 	private _fpp: number;
 	private data: BitArray;
-	private inserted: number = 1;
+	private inserted: number = 0;
+
+	private hashFunctions: { (data: string) : number } [] = [];
 
 	private expectedInsertions;
 
@@ -28,14 +32,15 @@ export class BloomFilter<T> {
 		this.expectedInsertions = expectedInsertions;
 
 		if(fpp == undefined) {
-			fpp = 0.03;
+			this._fpp = 0.03;
 
-			this.initialize(expectedInsertions, fpp);
+			this.initialize(expectedInsertions, this._fpp);
 		}
 		else {
+			this._fpp = fpp;
+
 			this.initialize(expectedInsertions, fpp);
 		}
-
 	}
 
 	public expectedFpp() : number {
@@ -50,16 +55,47 @@ export class BloomFilter<T> {
 		return false;
 	}
 
+	public getInsertedAmount() : number {
+		return this.inserted;
+	}
+
 	public mightContain(object : T) : boolean{
-        return false;
+		let objectString = this.createObjectString(object);
+
+		console.log("Contain");
+
+        for (let i = 0; i < this.hashFunctions.length; i++) {
+        	let index = this.hashFunctions[i](objectString);
+
+
+
+        	if(this.data.isBitSet(index) == false) {
+        		return false;
+	        }
+        }
+
+        return true;
 	}
 
 	public put(object: T) : void {
+		let objectString = this.createObjectString(object);
 
+
+		for (let i = 0; i < this.hashFunctions.length; i++) {
+			let index = this.hashFunctions[i](objectString);
+
+			this.data.set(index, 1);
+		}
+
+		this.inserted++;
 	}
 
 	public putAll(that: BloomFilter<T>) : void {
 
+	}
+
+	private createObjectString(object: T) : string {
+		return object.toString();
 	}
 
 	private initialize(expectedInsertions: number, fpp: number) {
@@ -67,6 +103,30 @@ export class BloomFilter<T> {
 		let hashFunctions = this.calculateOptimalNumberHashFunctions(numberOfBits, expectedInsertions);
 
 		this.data = new BitArray(numberOfBits);
+		this.initializeHashFunctions(hashFunctions, numberOfBits);
+	}
+
+	private initializeHashFunctions(hashFunctions: number, numberOfBits: number) {
+		// By using double hashing we only need 2 hash functions to create an unlimited number of hash functions.
+		let hashFunction1 = this.createHashFunction();
+		let hashFunction2 = this.createHashFunction();
+
+		// Create HashFunctions
+		for (let i = 0; i < hashFunctions; i++) {
+			this.hashFunctions[i] = (data: string) => {
+				return (hashFunction1(data) + i * hashFunction2(data)) % numberOfBits;
+			}
+		}
+	}
+
+	private createHashFunction(): (data: string) => number {
+		let seed = Math.floor(Math.random() * 1000000);
+
+		return function (data: string): number {
+			let buffer = Buffer.from(data);
+
+			return farmhash.hash32WithSeed(buffer, seed);
+		}
 	}
 
 	/**

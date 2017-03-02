@@ -6,7 +6,10 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "farmhash": "^1.2.1",
+    "highwayhash": "^2.0.0"
+  },
   "devDependencies": {
     "@types/chai": "^3.4.35",
     "@types/mocha": "^2.2.39",
@@ -17,6 +20,7 @@
     "mocha": "^3.2.0",
     "sinon": "^1.17.7",
     "ts-node": "^2.1.0",
+    "@types/node": "^7.0.5",
     "typescript": "^2.1.6"
   },
   "scripts": {
