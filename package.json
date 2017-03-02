@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Collection of datastructures and algorithims for typescript.",
   "main": "dist/index.js",
+  "repository": "https://github.com/MaikelH/ts-collections",
   "directories": {
     "test": "test"
   },
@@ -24,7 +25,7 @@
     "typescript": "^2.1.6"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tsc && ./node_modules/.bin/mocha --recursive dist/test"
   },
   "keywords": [
     "collections",
