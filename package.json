@@ -2,8 +2,9 @@
   "name": "ts-collections",
   "version": "1.0.0",
   "description": "Collection of datastructures and algorithims for typescript.",
-  "main": "dist/index.js",
+  "main": "dist/lib/index.js",
   "repository": "https://github.com/MaikelH/ts-collections",
+  "types": "dist/lib/index.d.ts",
   "directories": {
     "test": "test"
   },
