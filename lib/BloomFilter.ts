@@ -28,6 +28,13 @@ export class BloomFilter<T> {
 
 	private expectedInsertions;
 
+	/**
+	 * Create a new bloom filter of type T. When the false positive probability is not given it will initialize with a
+	 * default probability of 3% (0.03).
+	 *
+	 * @param expectedInsertions
+	 * @param fpp false positive probability
+	 */
 	constructor(expectedInsertions: number, fpp?: number) {
 		this.expectedInsertions = expectedInsertions;
 
@@ -43,18 +50,39 @@ export class BloomFilter<T> {
 		}
 	}
 
+	/**
+	 * The expected false positive probability rate. Calculated with the number of expected insertions.
+	 *
+	 * @return {number}
+	 */
 	public expectedFpp() : number {
 		return this.calculateErrorRate(this.expectedInsertions, this.data.getSize());
 	}
 
+	/**
+	 * The current false positive probability rate. Calculated using the actual number insertions. This number should be
+	 * lower then the expectedFpp until the amount of expected insertions is reached.
+	 *
+	 * @return {number}
+	 */
 	public currentFpp() : number {
 		return this.calculateErrorRate(this.inserted, this.data.getSize());
 	}
 
+	/**
+	 * Get the amount of inserted objects.
+	 *
+	 * @return {number}
+	 */
 	public getInsertedAmount() : number {
 		return this.inserted;
 	}
 
+	/**
+	 * Returns {@code true} if the element might have been put in this Bloom filter.
+	 *
+	 * @return {number}
+	 */
 	public mightContain(object : T) : boolean{
 		let objectString = this.createObjectString(object);
 
@@ -69,6 +97,11 @@ export class BloomFilter<T> {
         return true;
 	}
 
+	/**
+	 * Put element in the bloom filter.
+	 *
+	 * @param object
+	 */
 	public put(object: T) : void {
 		let objectString = this.createObjectString(object);
 
@@ -82,6 +115,11 @@ export class BloomFilter<T> {
 		this.inserted++;
 	}
 
+	/**
+	 * Put a collection of elements in the filter.
+	 *
+	 * @param that
+	 */
 	public putAll(that: T[]) : void {
 		that.forEach(item => this.put(item));
 	}
