@@ -39,6 +39,20 @@ describe("BitArray", () => {
 			let result = bits.isBitSet(868);
 
 			Assert.equal(result, 1);
+		});
+
+		it("Should unset bit on the correct position (1 set, position > 32)", () => {
+			let bits = new BitArray(1000);
+
+			bits.set(868, 1);
+			bits.set(867, 1);
+			let result = bits.isBitSet(868);
+
+			bits.set(868, 0);
+			result = bits.isBitSet(868);
+
+			Assert.isTrue(bits.isBitSet(867));
+			Assert.equal(result, false);
 		})
 	});
 

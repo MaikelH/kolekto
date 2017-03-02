@@ -43,7 +43,13 @@ export class BitArray {
 
 		let shifts = position % 32;
 
-		number |= 1 << shifts;
+		if(data === 0) {
+			number &= ~(1 << shifts);
+		}
+		else {
+			number |= 1 << shifts;
+		}
+
 
 		this.data[arrayPosition] = number;
 	}
