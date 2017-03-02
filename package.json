@@ -8,8 +8,7 @@
     "test": "test"
   },
   "dependencies": {
-    "farmhash": "^1.2.1",
-    "highwayhash": "^2.0.0"
+    "farmhash": "^1.2.1"
   },
   "devDependencies": {
     "@types/chai": "^3.4.35",

@@ -29,7 +29,7 @@ export class BitArray {
 	 * Set the specific bit on the given position to the given value. The data can be 0 or 1.
 	 *
 	 * @param position s
-	 * @param data
+	 * @param data 0 or 1
 	 */
 	public set(position: number, data: number) {
 
@@ -48,6 +48,12 @@ export class BitArray {
 		this.data[arrayPosition] = number;
 	}
 
+	/**
+	 * Check if a specific bit at the specified position is set.
+	 *
+	 * @param position
+	 * @return {boolean} True if the bit is set
+	 */
 	public isBitSet(position: number) : boolean {
 		if(position >= this.size) {
 			throw new Error("Position is outside of bounds.")
