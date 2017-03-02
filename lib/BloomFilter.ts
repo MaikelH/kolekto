@@ -51,10 +51,6 @@ export class BloomFilter<T> {
 		return this.calculateErrorRate(this.inserted, this.data.getSize());
 	}
 
-	public isCompatible(that: BloomFilter<T>) : boolean{
-		return false;
-	}
-
 	public getInsertedAmount() : number {
 		return this.inserted;
 	}
@@ -62,12 +58,8 @@ export class BloomFilter<T> {
 	public mightContain(object : T) : boolean{
 		let objectString = this.createObjectString(object);
 
-		console.log("Contain");
-
         for (let i = 0; i < this.hashFunctions.length; i++) {
         	let index = this.hashFunctions[i](objectString);
-
-
 
         	if(this.data.isBitSet(index) == false) {
         		return false;
@@ -90,12 +82,12 @@ export class BloomFilter<T> {
 		this.inserted++;
 	}
 
-	public putAll(that: BloomFilter<T>) : void {
-
+	public putAll(that: T[]) : void {
+		that.forEach(item => this.put(item));
 	}
 
 	private createObjectString(object: T) : string {
-		return object.toString();
+		return JSON.stringify(object);
 	}
 
 	private initialize(expectedInsertions: number, fpp: number) {

@@ -64,6 +64,5 @@ describe("BitArray", () => {
 			result = bits.isBitSet(33);
 			Assert.equal(result, true);
 		});
-
 	})
 });
