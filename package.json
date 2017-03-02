@@ -1,5 +1,5 @@
 {
-  "name": "ts-collections",
+  "name": "kolekto",
   "version": "1.0.0",
   "description": "Collection of datastructures and algorithims for typescript.",
   "main": "dist/lib/index.js",
