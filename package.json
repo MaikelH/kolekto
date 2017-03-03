@@ -1,6 +1,6 @@
 {
   "name": "kolekto",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Collection of datastructures and algorithims for typescript.",
   "main": "dist/lib/index.js",
   "repository": "https://github.com/MaikelH/kolekto",
