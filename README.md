@@ -4,8 +4,8 @@ Collections and datastructures library for Typescript ( and javascript).
 
 ## Index
 
-- [Installation](#Installation)
-- [Collections](#Collections)
+- [Installation](#installation)
+- [Collections](#collections)
   - BitArray
   - BloomFilter
 

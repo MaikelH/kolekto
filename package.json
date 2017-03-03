@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Collection of datastructures and algorithims for typescript.",
   "main": "dist/lib/index.js",
-  "repository": "https://github.com/MaikelH/ts-collections",
+  "repository": "https://github.com/MaikelH/kolekto",
   "types": "dist/lib/index.d.ts",
   "directories": {
     "test": "test"
@@ -30,7 +30,9 @@
   "keywords": [
     "collections",
     "algorithms",
-    "typescript"
+    "typescript",
+    "bloomfilter",
+    "bitarray"
   ],
   "author": "Maikel Hofman",
   "license": "MIT"
