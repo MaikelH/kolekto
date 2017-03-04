@@ -1,5 +1,6 @@
-
-
+/**
+ * @since 1.0
+ */
 export class BitArray {
 	private size: number;
 	private data: number[];

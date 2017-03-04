@@ -18,6 +18,7 @@ let crypto = require('crypto');
  *  - http://stackoverflow.com/questions/658439/how-many-hash-functions-does-my-bloom-filter-need
  *  - http://stackoverflow.com/questions/15952524/bloom-filter-evaluating-false-positive-rate/24071581#24071581
  *
+ * @since 1.0
  */
 export class BloomFilter<T> {
 	private _fpp: number;
