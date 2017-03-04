@@ -50,7 +50,6 @@ export class BitArray {
 			number |= 1 << shifts;
 		}
 
-
 		this.data[arrayPosition] = number;
 	}
 
