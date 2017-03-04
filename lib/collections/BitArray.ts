@@ -64,9 +64,7 @@ export class BitArray {
 		if(position >= this.size) {
 			throw new Error("Position is outside of bounds.")
 		}
-
-		let arrayPosiition = Math.floor(position / 32);
-
+		
 		let arrayPosition = Math.floor(position / 32);
 
 		let number = this.data[arrayPosition];
