@@ -5,6 +5,7 @@ Collections and datastructures library for Typescript ( and javascript).
 ## Index
 
 - [Installation](#installation)
+- [API documentation](http://blog.chronos-technology.nl/kolekto/)
 - [Collections](#collections)
   - [BitArray](#bitset)
   - [BloomFilter](#bloomfilter)
