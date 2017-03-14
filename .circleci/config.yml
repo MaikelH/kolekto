@@ -1,0 +1,11 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: node:6.10
+    parallelism: 1
+    steps:
+      - run: npm install
+      - run: ./node_modules/.bin/gulp build
+      - run: ./node_modules/mocha/bin/mocha --ui bdd --recursive dist/test
+      - run: ./node_modules/.bin/gulp gen-docs
