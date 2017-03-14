@@ -3,6 +3,7 @@ jobs:
   build:
     docker:
       - image: node:6.10
+    working_directory: ~/kolekto
     parallelism: 1
     steps:
       - run: npm install
