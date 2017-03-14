@@ -14,4 +14,4 @@ jobs:
       - run: ./node_modules/mocha/bin/mocha --ui bdd --recursive --reporter mocha-junit-reporter dist/test
       - run: ./node_modules/.bin/gulp gen-docs
       - store_test_results:
-          path: $CIRCLE_TEST_REPORTS/junit/
+          path: $CIRCLE_TEST_REPORTS/junit/test-results.xml
