@@ -5,9 +5,11 @@ jobs:
       - image: node:6.10
     working_directory: ~/kolekto
     parallelism: 1
+    environment:
+      - MOCHA_FILE: $CIRCLE_TEST_REPORTS/junit/test-results.xml
     steps:
       - checkout
       - run: npm install
       - run: ./node_modules/.bin/gulp build
-      - run: ./node_modules/mocha/bin/mocha --ui bdd --recursive dist/test
+      - run: ./node_modules/mocha/bin/mocha --ui bdd --recursive --reporter mocha-junit-reporter dist/test
       - run: ./node_modules/.bin/gulp gen-docs
