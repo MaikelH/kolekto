@@ -8,7 +8,7 @@ let tsProject = ts.createProject('tsconfig.json');
 
 gulp.task('build', function () {
     try {
-        console.log(child.execSync("tsc").toString());
+        console.log(child.execSync("./node_modules/.bin/tsc").toString());
         console.log("Compiled successfully")
     }
     catch(e) {
