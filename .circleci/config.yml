@@ -13,5 +13,5 @@ jobs:
       - run: ./node_modules/.bin/gulp build
       - run: ./node_modules/mocha/bin/mocha --ui bdd --recursive --reporter mocha-junit-reporter --reporter-options mochaFile=./junit/test-results.xml dist/test
       - run: ./node_modules/.bin/gulp gen-docs
-      - store_test_results:
+      - store_artifacts:
           path: ./junit/
