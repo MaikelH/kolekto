@@ -2,6 +2,10 @@
 
 Collections and datastructures library for Typescript ( and javascript).
 
+## Status
+
+master: [![CircleCI](https://circleci.com/gh/MaikelH/kolekto.svg?style=svg)](https://circleci.com/gh/MaikelH/kolekto)
+
 ## Index
 
 - [Installation](#installation)
