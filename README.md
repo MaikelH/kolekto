@@ -38,7 +38,7 @@ of a set.
 
 False positives are possible but false negatives not. In laymen's terms this means that an element maybe be in the set
 or definitely not in the set. The underlying hash function is the [Google's FarmHash](https://github.com/google/farmhash)
-family of hash functions. By using the the C implementation of farmhash a high insertion can be achieved.
+family of hash functions. By using the the C implementation of farmhash a high insertion rate can be achieved.
 
 The interface is modeled after the BloomFilter in the Google Guava library.
 
