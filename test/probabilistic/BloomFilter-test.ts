@@ -1,5 +1,5 @@
 import {assert as Assert} from "chai";
-import {BloomFilter} from "../lib/BloomFilter";
+import {BloomFilter} from "../../lib/BloomFilter";
 
 describe("BloomFilter", () => {
 	describe('Construction', () => {
